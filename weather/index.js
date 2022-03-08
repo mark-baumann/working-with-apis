@@ -18,16 +18,36 @@ function getWeatherData(input){
             
             //json obj als javascript object
             const obj = data.currentConditions;
-            console.log(obj);
-            addPicture(obj.iconURL);
+            //console.log(obj);
+
+            //console.log(data.next_days);
+            const next_days = data.next_days;
             
+            //next_days.forEach((element => addElement(element.day)));
+            //next_days.forEach((element => addPicture(element.iconURL)));
+            next_days.forEach((element => createCard(element.iconURL, element.day)));
 
-
-
-
-            addElement(data.region);
+            //addPicture(obj.iconURL);
+            //addElement(data.region);
             });
 }
+
+function createCard(newimage, datatext) {
+    var newDiv = document.createElement("div");
+    newDiv.classList = "card";
+    var image = document.createElement("img");
+    image.src = newimage;
+    newDiv.appendChild(image);
+
+    var newContent = document.createTextNode(datatext);
+    newDiv.appendChild(newContent);
+
+
+
+  var currentDiv = document.getElementById("div1");
+  document.body.insertBefore(newDiv, currentDiv);
+}
+
 
 
 
@@ -46,7 +66,11 @@ function addElement (data) {
 
 
 function addPicture(data) {
+var newDiv = document.createElement("div");
 var image = document.createElement("img");
 image.src = data;
-document.body.appendChild(image);
+newDiv.appendChild(image);
+
+var currentDiv = document.getElementById("div1");
+document.body.insertBefore(newDiv, currentDiv);
 }
