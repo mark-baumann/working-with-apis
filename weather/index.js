@@ -1,10 +1,14 @@
 let button = document.getElementById('absenden');
-let input = document.getElementById('city');
+
+
+
+
+
 
 button.addEventListener('click', getWeatherData);
 
-function getWeatherData(input){
-    fetch('https://weatherdbi.herokuapp.com/data/weather/gera')
+async function getWeatherData(){
+    await fetch(`https://weatherdbi.herokuapp.com/data/weather/${document.querySelector('input').value}`)
 		.then(res => res.json())
 		.then(data => {
            
@@ -13,7 +17,7 @@ function getWeatherData(input){
             /* show all keys
             var key = [];
             for (key in data) {
-                console.log(key, data[key]);
+            console.log(key, data[key]);
             }*/
             
             //json obj als javascript object
